@@ -12,9 +12,9 @@ class Homecontroller extends Controller
     public function home()
     {
         if(Auth::user()->role =="1"){
-            return view('admin.home');
+            return redirect(url('Admin/home'));
         }else{
-            return view('users.home');
+            return view('dashboard');
         }
     }
 }
