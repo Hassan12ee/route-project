@@ -7,8 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 
+
+
 class ProductController extends Controller
 {
+    use saveImage;
        /**
      * Display a listing of the resource.
      */
@@ -23,6 +26,8 @@ class ProductController extends Controller
     public function create()
     {
         //
+        return view('admin.Addproduct');
+
     }
 
     /**
@@ -31,6 +36,16 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         //
+    
+        $photo =$this->SaveImage($request->photo,'Product');
+        Product::create([
+            'name'=> $request->name,
+            'photo'=> $photo,
+            'desc'=> $request->desc,
+            'price'=> $request->price,
+            'quantity'=> $request->quantity,
+            ]);
+            return redirect()->back()->with(['success' => 'Product Added successfully']);
     }
 
     /**
@@ -39,6 +54,8 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         //
+        $view = Product::all();
+        return view('Admin.All_product',compact('view'));
     }
 
     /**

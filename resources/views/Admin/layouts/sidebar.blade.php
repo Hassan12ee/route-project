@@ -12,7 +12,7 @@
               <span class="count bg-success"></span>
             </div>
             <div class="profile-name">
-              <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
+              <h5 class="mb-0 font-weight-normal">{{ Auth::user()->name }}</h5>
               <span>Gold Member</span>
             </div>
           </div>
@@ -64,24 +64,17 @@
           <span class="menu-title">Dashboard</span>
         </a>
       </li>
+ 
       <li class="nav-item menu-items">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ Route('allproduct') }}">
           <span class="menu-icon">
             <i class="mdi mdi-speedometer"></i>
           </span>
-          <span class="menu-title">Dashboard</span>
+          <span class="menu-title">All Products</span>
         </a>
       </li>
       <li class="nav-item menu-items">
-        <a class="nav-link" href="index.html">
-          <span class="menu-icon">
-            <i class="mdi mdi-speedometer"></i>
-          </span>
-          <span class="menu-title">Dashboard</span>
-        </a>
-      </li>
-      <li class="nav-item menu-items">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ Url('/AddProduct') }}">
           <span class="menu-icon">
             <i class="mdi mdi-speedometer"></i>
           </span>
