@@ -80,6 +80,14 @@
           <span class="menu-title">Dashboard</span>
         </a>
       </li>
+      <li class="nav-item menu-items">
+        <a class="nav-link" href="index.html">
+          <span class="menu-icon">
+            <i class="mdi mdi-speedometer"></i>
+          </span>
+          <span class="menu-title">Add Product</span>
+        </a>
+      </li>
     </ul>
   </nav>
         {{-- <li class="nav-item menu-items">

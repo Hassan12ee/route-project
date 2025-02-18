@@ -1,4 +1,4 @@
-@extends('Admin.home')
+@extends('Admin.layouts.app')
 @section('content')
 <div class="main-panel">
 
