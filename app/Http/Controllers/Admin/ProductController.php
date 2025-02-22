@@ -6,8 +6,7 @@ use App\Models\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-
-
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -36,14 +35,12 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         //
+        
     
-        $photo =$this->SaveImage($request->photo,'Product');
+        // $photo =$this->SaveImage($request->photo,'Product');
+        $request['photo']=Storage::putFile("products",$request->photo);
         Product::create([
-            'name'=> $request->name,
-            'photo'=> $photo,
-            'desc'=> $request->desc,
-            'price'=> $request->price,
-            'quantity'=> $request->quantity,
+            $request
             ]);
             return redirect()->back()->with(['success' => 'Product Added successfully']);
     }

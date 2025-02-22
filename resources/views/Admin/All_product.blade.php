@@ -9,16 +9,19 @@
           <table class="table table-striped">
             <thead>
               <tr>
+                <th> # </th>
                 <th> photo </th>
                 <th> name </th>
                 <th> price </th>
                 <th> Amount </th>
                 <th> desc </th>
+                <th> action </th>
               </tr>
             </thead>
             <tbody>
                 @foreach ($view as $views)
                 <tr>
+                    <td> {{ $views->id }} </td>
                     <td class="py-1">
                       <img src="{{ asset('Product/'. $views->photo) }}" width="35px" height="35px" alt="image" />
                     </td>
@@ -26,6 +29,7 @@
                     <td>{{ $views->price }}pound</td>
                     <td> {{ $views->quantity }} </td>
                     <td>{{ $views->desc }}</td>
+                    <td>non </td>
                   </tr>
                 @endforeach
              

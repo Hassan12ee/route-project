@@ -29,11 +29,11 @@ Route::group([
     
     
 ],function(){
-    
-    Route::get('/AddProduct',[ProductController::class, 'create']);
-    Route::post('/AddProduct',[ProductController::class, 'store'])->name('Addproduct');
     Route::get('/profile',[AdminController::class, 'profile'])->name('admin.profile');
-    Route::get('/AllProduct',[ProductController::class, 'show'])->name('allproduct');
-
+    Route::controller(ProductController::class)->group(function ()   {
+    Route::get('/AddProduct','create');
+    Route::post('/AddProduct','store')->name('Addproduct');   
+    Route::get('/AllProduct','show')->name('allproduct'); 
+    });
 });
 
