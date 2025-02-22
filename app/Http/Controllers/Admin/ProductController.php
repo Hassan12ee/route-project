@@ -35,13 +35,12 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         //
+        $data = $request->all();
         
-    
         // $photo =$this->SaveImage($request->photo,'Product');
-        $request['photo']=Storage::putFile("products",$request->photo);
-        Product::create([
-            $request
-            ]);
+        $data['photo']=Storage::putFile("products",$request->photo);
+       
+        $product =Product::create($data);
             return redirect()->back()->with(['success' => 'Product Added successfully']);
     }
 

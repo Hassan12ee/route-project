@@ -12,4 +12,8 @@ class AdminController extends Controller
         return view('Admin.profile');
         
     }
+    public function index(){
+
+        return view('Admin.home');
+    }
 }

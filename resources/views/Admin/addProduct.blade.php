@@ -5,7 +5,7 @@
       <div class="card-body">
         <h4 class="card-title">Basic form elements</h4>
         <p class="card-description"> Basic form elements </p>
-        <form class="forms-sample" action="{{ route('Addproduct') }}" method="POST" enctype="multipart/form-data">
+        <form class="forms-sample" action="{{ route("storeproduct") }}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
             <label for="Name">Name</label>
