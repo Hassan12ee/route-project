@@ -7,74 +7,45 @@ return [
     | Default Filesystem Disk
     |--------------------------------------------------------------------------
     |
-    | Here you may configure the default filesystem disk that should be used by
-    | your application. You can choose any of the disks defined in the "disks"
-    | array below. The default disk is "local" unless specified otherwise.
+    | Here you may specify the default filesystem disk that should be used
+    | by the framework. The "local" disk, as well as a variety of cloud
+    | based disks are available to your application for file storage.
     |
     */
 
-    'default' => env('FILESYSTEM_DISK', 'local'),
+    'default' => env('FILESYSTEM_DISK', 'public'),
 
     /*
     |--------------------------------------------------------------------------
-    | File System Disks
+    | Filesystem Disks
     |--------------------------------------------------------------------------
     |
-    | Laravel supports a variety of file storage mechanisms. You may configure
-    | each disk that your application uses here. By default, Laravel is set
-    | up to store files locally on the server, but you may configure other
-    | disks such as S3, FTP, etc.
+    | Below you may configure as many filesystem disks as necessary, and you
+    | may even configure multiple disks for the same driver. Examples for
+    | most supported storage drivers are configured here for reference.
+    |
+    | Supported drivers: "local", "ftp", "sftp", "s3"
     |
     */
 
     'disks' => [
 
-        /*
-        |--------------------------------------------------------------------------
-        | Local Filesystem Disk
-        |--------------------------------------------------------------------------
-        |
-        | The "local" disk is the default file storage location. It stores files
-        | in the `storage/app` directory. Typically, this will be used for
-        | storing files that are not publicly accessible.
-        |
-        */
-
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
+            'serve' => true,
+            'throw' => false,
+            'report' => false,
         ],
-
-        /*
-        |--------------------------------------------------------------------------
-        | Public Filesystem Disk
-        |--------------------------------------------------------------------------
-        |
-        | The "public" disk stores files in the `storage/app/public` directory
-        | and makes them accessible from the web via the `storage` directory
-        | in the public folder. This disk is typically used for user-uploaded
-        | files that should be publicly accessible.
-        |
-        */
 
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL') . '/storage',
+            'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
         ],
-
-        /*
-        |--------------------------------------------------------------------------
-        | Amazon S3 Filesystem Disk
-        |--------------------------------------------------------------------------
-        |
-        | If you want to store files on Amazon S3, you may configure this disk.
-        | Laravel uses the Flysystem library to provide a simple, unified API
-        | for working with various storage backends. You can set up your S3
-        | credentials in the `config/services.php` configuration file.
-        |
-        */
 
         's3' => [
             'driver' => 's3',
@@ -83,45 +54,27 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
+            'endpoint' => env('AWS_ENDPOINT'),
+            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'throw' => false,
+            'report' => false,
         ],
 
-        /*
-        |--------------------------------------------------------------------------
-        | FTP Filesystem Disk
-        |--------------------------------------------------------------------------
-        |
-        | If you want to store files on an FTP server, you can configure it here.
-        | The FTP driver also uses the Flysystem library to provide integration.
-        |
-        */
+    ],
 
-        'ftp' => [
-            'driver' => 'ftp',
-            'host' => env('FTP_HOST'),
-            'username' => env('FTP_USERNAME'),
-            'password' => env('FTP_PASSWORD'),
-            'root' => env('FTP_ROOT'),
-            'visibility' => 'public',
-        ],
+    /*
+    |--------------------------------------------------------------------------
+    | Symbolic Links
+    |--------------------------------------------------------------------------
+    |
+    | Here you may configure the symbolic links that will be created when the
+    | `storage:link` Artisan command is executed. The array keys should be
+    | the locations of the links and the values should be their targets.
+    |
+    */
 
-        /*
-        |--------------------------------------------------------------------------
-        | SFTP Filesystem Disk
-        |--------------------------------------------------------------------------
-        |
-        | If you want to store files on an SFTP server, you can configure it here.
-        |
-        */
-
-        'sftp' => [
-            'driver' => 'sftp',
-            'host' => env('SFTP_HOST'),
-            'username' => env('SFTP_USERNAME'),
-            'password' => env('SFTP_PASSWORD'),
-            'root' => env('SFTP_ROOT'),
-            'visibility' => 'public',
-        ],
-
+    'links' => [
+        public_path('storage') => storage_path('app/public'),
     ],
 
 ];

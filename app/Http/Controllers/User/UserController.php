@@ -22,4 +22,8 @@ class UserController extends Controller
     {
         return view('Users.Contact');
     }
+    public function profile() {
+        return view('Users.profile');
+        
+    }
 }

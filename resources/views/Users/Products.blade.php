@@ -33,7 +33,7 @@
 @foreach ($Product as $Products )
 <div class="col-lg-4 col-md-4 all des">
   <div class="product-item">
-    <a href="#"><img src="{{asset("User/assets")}}/images/product_01.jpg" alt=""></a>
+    <a href="#"><img src="{{asset("storage/$Products->photo")}}/images/product_01.jpg" alt=""></a>
     <div class="down-content">
       <a href="#"><h4>{{ $Products->name }}</h4></a>
       <h6>${{ $Products->price }}</h6>

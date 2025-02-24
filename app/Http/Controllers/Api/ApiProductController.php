@@ -83,48 +83,56 @@ class ApiProductController extends Controller
      */
     public function update(Request $request,$id)
     {
-        //
-        $val= Validator::make($request->all(),[
-            'name' => 'required|string|max:255',
-            'photo' => 'image|mimes:png,jpg,jpeg',
-            'desc' => 'required|string',
-            'price'=> 'required|numeric',
-            'quantity'=> 'required|numeric',
-        ]);
-        if($val->fails()){
-            return response()->json(["error"=>$val->errors()],404);
-        }
-        $Product = Product::find($id);
-        if ($Product) {
-            # code...
-            $new = $request->photo;
-            if($new == null){
-                $Product->update([            
-                'name'=>$request->name,
-                'desc'=>$request->desc,
-                'quantity'=>$request->quantity,
-                'price'=>$request->price
-            ]);
-            return response()->json(["Product"=>$Product , 'msg'=>'the Product added successfully'],201);
-            }else{
-                Storage::delete($Product->photo);
-                $photo =$data['photo']=Storage::putFile("products",$request->photo);
-                $Product->update( [  
-                'name'=>$request->name,
-                'photo'=>$photo,
-                'desc'=>$request->desc,
-                'quantity'=>$request->quantity,
-                'price'=>$request->price]);
-                return response()->json(["Product"=>$Product , 'msg'=>'the Product added successfully'],201);
+    
+    
+            $product = Product::find($id);
+            if($product == null){
+                //object json
+                return  response()->json([
+                    "msg"=> "Product  not found"
+                ],404);
             }
-        }else {
-            # code...
-            return response()->json(["msg"=>"data not fuond"],404);
-        }
-        
-        
-        
-        
+    
+            $errors  = Validator::make($request->all(),[
+                "name" => "required|string|max:255",
+                "desc" => "required|string",
+                "price" => "required|numeric",
+                "photo" => "required|image|mimes:png,jpg,jpeg",
+                "quantity" => "required|numeric",
+    
+            ]);
+    
+            if($errors->fails()){
+                return  response()->json([
+                    "error"=> $errors->errors()
+                ],301);
+            }
+    
+
+    
+            if($request->hasFile("photo")){
+                Storage::delete($request->photo);
+                $image = Storage::putFile("products",$request->photo);
+    
+            }else{
+                $image = $product->photo;
+            }
+            //update
+            $product->update([
+                "name" => $request->name,
+                "desc" => $request->desc,
+                "price" => $request->price,
+                "photo" => $image,
+                "quantity" => $request->quantity,
+    
+            ]);
+    
+            //reirectr
+    
+            return  response()->json([
+                "msg"=> "product updated success",
+                "product"=> new ProductResource($product) ,
+            ],201);
     }
 
     /**

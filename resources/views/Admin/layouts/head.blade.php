@@ -1,5 +1,5 @@
 
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <head>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -8,7 +8,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona Admin</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset("Admin/assets")}}/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="{{asset("Admin/assets")}}/vendors/css/vendor.bundle.base.css">

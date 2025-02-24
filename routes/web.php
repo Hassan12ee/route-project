@@ -27,7 +27,7 @@ Route::middleware([
     })->name('dashboard');
     
         // Route::get('/AllProduct',[ProductsController::class,'show'])->name('allproduct'); 
-
+        Route::get('/profilee',[UserController::class, 'profile'])->name('User.profile');
         Route::middleware(['Isadmin'])->group(function () {
                 Route::get('/profile',[AdminController::class, 'profile'])->name('admin.profile');
                 Route::get('/Home',[AdminController::class, 'index'])->name('admin.home');

@@ -26,7 +26,17 @@
             </li>
            
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/dashboard') }}">Dashboard</a>
+              <a href="{{ route('User.profile') }}" class="nav-link">
+                
+                {{ Auth::user()->name }}
+                
+              </a>
+            </li>
+            <li class="nav-item">
+              <form method="POST" action="{{ route('logout') }}">
+                @csrf
+              <button type="submit" class="nav-link btn btn-link" >Log out</button>
+            </form>
             </li>
             @else
             <li class="nav-item">
