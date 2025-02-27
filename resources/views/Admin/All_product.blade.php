@@ -8,19 +8,19 @@
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Our Products</h4>
+        <h4 class="card-title">{{ __("msg.Our Products") }}</h4>
        
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
               <tr>
                 <th> # </th>
-                <th> photo </th>
-                <th> name </th>
-                <th> price </th>
-                <th> Amount </th>
-                <th> desc </th>
-                <th> action </th>
+                <th> {{ __("msg.Photo") }} </th>
+                <th> {{ __("msg.Name") }} </th>
+                <th> {{ __("msg.price") }} </th>
+                <th> {{ __("msg.quantity") }} </th>
+                <th> {{ __("msg.desc") }} </th>
+                <th> {{ __("msg.action") }} </th>
               </tr>
             </thead>
             <tbody>

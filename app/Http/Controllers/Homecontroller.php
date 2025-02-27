@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,8 @@ class Homecontroller extends Controller
         if(Auth::user()->role =="1"){
             return redirect( Route("admin.home"));
         }else{
-            return view('Users.home');
+            $Product = Product::all();
+            return view('Users.home',compact('Product'));
         }
     }
 

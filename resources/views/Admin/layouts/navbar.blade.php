@@ -1,6 +1,6 @@
 <nav class="navbar p-0 fixed-top d-flex flex-row">
     <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-      <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{asset("Admin/assets")}}/images/logo-mini.svg" alt="logo" /></a>
+      <a class="navbar-brand brand-logo-mini" href="{{ url('/home') }}"><img src="{{asset("Admin/assets")}}/images/logo-mini.svg" alt="logo" /></a>
     </div>
     <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
       <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -9,13 +9,13 @@
       <ul class="navbar-nav w-100">
         <li class="nav-item w-100">
           <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-            <input type="text" class="form-control" placeholder="Search products">
+            <input type="text" class="form-control" placeholder="{{ __("msg.Search") }}">
           </form>
         </li>
       </ul>
       <ul class="navbar-nav navbar-nav-right">
         <li class="nav-item dropdown d-none d-lg-block">
-          <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-bs-toggle="dropdown" aria-expanded="false" href="#">+ Create New </a>
+          <a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-bs-toggle="dropdown" aria-expanded="false" href="#">+ {{ __("msg.Create New") }} </a>
           <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
             <h6 class="p-3 mb-0">Options</h6>
             <div class="dropdown-divider"></div>
@@ -26,7 +26,7 @@
                 </div>
               </div>
               <div class="preview-item-content">
-                <p class="preview-subject ellipsis mb-1">Products</p>
+                <p class="preview-subject ellipsis mb-1">{{ __("msg.Product") }}</p>
               </div>
             </a>
             <div class="dropdown-divider"></div>
@@ -54,10 +54,30 @@
 
           </div>
         </li>
-        <li class="nav-item nav-settings d-none d-lg-block">
-          <a class="nav-link" href="#">
-            <i class="mdi mdi-view-grid"></i>
+        <li class="nav-item dropdown border-left">
+          <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ App::getLocale() }}
           </a>
+          <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+            <h6 class="p-3 mb-0">choose a lang</h6>
+            <div class="dropdown-divider"></div>
+            <a href="{{ url( '/change/ar') }}" class="dropdown-item preview-item">
+              
+              <div class="preview-item-content">
+                <p class="preview-subject ellipsis mb-1">العربية</p>
+                
+              </div>
+            </a>
+            <div  class="dropdown-divider"></div>
+            <a href="{{ url( '/change/en') }}" class="dropdown-item preview-item">
+            
+              <div class="preview-item-content">
+                <p class="preview-subject ellipsis mb-1">English</p>
+                
+              </div>
+            </a>
+
+          </div>
         </li>
         <li class="nav-item dropdown border-left">
           <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
@@ -156,7 +176,7 @@
             </div>
           </a>
           <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
-            <h6 class="p-3 mb-0">Profile</h6>
+            <h6 class="p-3 mb-0">{{ __("msg.profile") }}</h6>
             <div class="dropdown-divider"></div>
             <a href="{{ route('admin.profile') }}" class="dropdown-item preview-item">
               <div class="preview-thumbnail">
@@ -165,7 +185,7 @@
                 </div>
               </div>
               <div class="preview-item-content">
-                <p class="preview-subject mb-1">Settings</p>
+                <p class="preview-subject mb-1">{{ __("msg.settings") }}</p>
               </div>
             </a>
             <div class="dropdown-divider"></div>
@@ -178,7 +198,7 @@
                 </div>
               </div>
               <div class="preview-item-content">
-                <p class="preview-subject mb-1">Loguot</p>
+                <p class="preview-subject mb-1">{{ __("msg.Logout") }}</p>
               </div>
             </button>
           </form>

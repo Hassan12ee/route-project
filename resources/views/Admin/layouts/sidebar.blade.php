@@ -1,6 +1,6 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-      <a class="sidebar-brand brand-logo" href="index.html"><img src="{{asset("Admin/assets")}}/images/logo.svg" alt="logo" /></a>
+      <a class="sidebar-brand brand-logo" href="{{ url('/home') }}"><img src="{{asset("Admin/assets")}}/images/logo.svg" alt="logo" /></a>
       <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="{{asset("Admin/assets")}}/images/logo-mini.svg" alt="logo" /></a>
     </div>
     <ul class="nav">
@@ -8,12 +8,12 @@
         <div class="profile-desc">
           <div class="profile-pic">
             <div class="count-indicator">
-              <img class="img-xs rounded-circle " src="{{asset("Admin/assets")}}/images/faces/face15.jpg" alt="">
+              <img class="img-xs rounded-circle " src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
               <span class="count bg-success"></span>
             </div>
             <div class="profile-name">
               <h5 class="mb-0 font-weight-normal">{{ Auth::user()->name }}</h5>
-              <span>Gold Member</span>
+              
             </div>
           </div>
           <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
@@ -25,43 +25,22 @@
                 </div>
               </div>
               <div class="preview-item-content">
-                <p class="preview-subject ellipsis mb-1 text-small">Account settings</p>
+                <p class="preview-subject ellipsis mb-1 text-small">{{ __("msg.settings") }}</p>
               </div>
             </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item preview-item">
-              <div class="preview-thumbnail">
-                <div class="preview-icon bg-dark rounded-circle">
-                  <i class="mdi mdi-onepassword  text-info"></i>
-                </div>
-              </div>
-              <div class="preview-item-content">
-                <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
-              </div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item preview-item">
-              <div class="preview-thumbnail">
-                <div class="preview-icon bg-dark rounded-circle">
-                  <i class="mdi mdi-calendar-today text-success"></i>
-                </div>
-              </div>
-              <div class="preview-item-content">
-                <p class="preview-subject ellipsis mb-1 text-small">To-do list</p>
-              </div>
-            </a>
+
           </div>
         </div>
       </li>
       <li class="nav-item nav-category">
-        <span class="nav-link">Navigation</span>
+        <span class="nav-link">{{ __("msg.Navigation") }}</span>
       </li>
       <li class="nav-item menu-items">
         <a class="nav-link" href="index.html">
           <span class="menu-icon">
             <i class="mdi mdi-speedometer"></i>
           </span>
-          <span class="menu-title">Dashboard</span>
+          <span class="menu-title">{{ __("msg.Dashboard") }}</span>
         </a>
       </li>
  
@@ -70,7 +49,7 @@
           <span class="menu-icon">
             <i class="mdi mdi-speedometer"></i>
           </span>
-          <span class="menu-title">All Products</span>
+          <span class="menu-title">{{ __("msg.All Product") }}</span>
         </a>
       </li>
       <li class="nav-item menu-items">
@@ -78,7 +57,7 @@
           <span class="menu-icon">
             <i class="mdi mdi-speedometer"></i>
           </span>
-          <span class="menu-title">Add Product</span>
+          <span class="menu-title">{{ __("msg.Add Product") }}</span>
         </a>
       </li>
     </ul>

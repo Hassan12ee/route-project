@@ -7,6 +7,9 @@ use App\Http\Controllers\User\ProductsController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 use app\Http\Middleware\IsAdmin;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/', 'home')->name("User.home");
@@ -22,10 +25,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get("home",[Homecontroller::class,'home']);
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    
+
         // Route::get('/AllProduct',[ProductsController::class,'show'])->name('allproduct'); 
         Route::get('/profilee',[UserController::class, 'profile'])->name('User.profile');
         Route::middleware(['Isadmin'])->group(function () {
@@ -40,6 +40,28 @@ Route::middleware([
                 Route::delete('/deleteProduct/{id}','destroy'); 
                 });
             });
+            
+
+            Route::get('/change/{locale}', function (string $locale) {
+                if (! in_array($locale, ['en','ar'])) {
+                    abort(400);
+                }
+                // $path = base_path('.env');
+                // if (File::exists($path)) {
+                //     file_put_contents($path, preg_replace(
+                //         "/^APP_LOCALE=.*/m",
+                //         "APP_LOCALE={$locale}",
+                //         file_get_contents($path)
+                //     ));
+                // }
+            
+                // // Apply new locale
+                // App::setLocale($locale);
+                Session::put('locale', $locale);
+                App::setLocale($locale);
+                return redirect()->back();
+            });
+
         
 });
 
