@@ -40,7 +40,7 @@ Route::middleware([
                 Route::delete('/deleteProduct/{id}','destroy'); 
                 });
             });
-            
+            Route::post('/Add_to_cart',[ProductsController::class, "cart"])->name('addtocart');
 
             Route::get('/change/{locale}', function (string $locale) {
                 if (! in_array($locale, ['en','ar'])) {
